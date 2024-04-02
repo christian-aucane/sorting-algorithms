@@ -41,19 +41,49 @@ def tri_selection(liste):
     print(f"""Ma liste triée avec le tri de sélection est :
 {liste}""")
     print()
-    print(f"""Temps d'exécution : {round(mesure_temps, 6)} sec""")
+    print(f"""Temps d'exécution : {round(mesure_temps * 1000, 6)} ms""")
     print(f"""Nombre d'échanges : {nb_permutations}""")
 
 # Exécution
 tri_selection(liste_aleatoire)
 
-# Tri à bulles
+# Tri à bulles (≠ tri à gnomes)
+def tri_bulles(liste):
+    top_chrono = time.time() 
+    nb_permutations = 0
+    
+    print(f"""Ma liste aléatoire et non triée est : 
+{liste}""")
+    longueur_liste = len(liste)
+
+    for passe in range(longueur_liste - 1, 0, -1):
+        echange = False
+        for i in range(passe):
+            if liste[i] > liste[i + 1]:
+                liste[i], liste[i + 1] = liste[i + 1], liste[i]
+                nb_permutations += 1
+                echange = True
+        if not echange:
+            break
+
+    temps_fini = time.time()
+    mesure_temps = temps_fini - top_chrono
+    print()
+    print(f"""Ma liste triée avec le tri de sélection est :
+{liste}""")
+    print()
+    print(f"""Temps d'exécution : {round(mesure_temps*1000, 6)} ms""")
+    print(f"""Nombre d'échanges : {nb_permutations}""")
+
+# Exécution
+tri_bulles(liste_aleatoire)
+
+
 # Tri par insertion
 # Tri fusion
 # Tri rapide
 # Tri par tas
 # Tri à peigne
-
 
 # Tri à peigne // comb sort 
 # Pas stable
@@ -89,7 +119,7 @@ def tri_peigne(liste):
     print(f"""Ma liste triée avec le tri de peigne est :
 {liste}""")
     print()
-    print(f"""Temps d'exécution : {round(mesure_temps, 6)} sec""")
+    print(f"""Temps d'exécution : {round(mesure_temps*1000, 6)} ms""")
     print(f"""Nombre d'échanges : {nb_permutations}""")
 
 # Exécution 
