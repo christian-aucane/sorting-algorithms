@@ -48,6 +48,7 @@ def tri_selection(liste):
 tri_selection(liste_aleatoire)
 
 # Tri à bulles (≠ tri à gnomes)
+# Stable
 def tri_bulles(liste):
     top_chrono = time.time() 
     nb_permutations = 0
@@ -80,10 +81,16 @@ tri_bulles(liste_aleatoire)
 
 
 # Tri par insertion
+# Stable
+
 # Tri fusion
+# Stable 
+
 # Tri rapide
+# Pas stable
+
 # Tri par tas
-# Tri à peigne
+# Pas stable
 
 # Tri à peigne // comb sort 
 # Pas stable
