@@ -1,3 +1,9 @@
+def is_sorted_list(arr):
+    for i in range(len(arr) - 1):
+        if arr[i] > arr[i + 1]:
+            return False 
+    return True
+
 def merge_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -32,7 +38,19 @@ def merge(left, right):
     
     return result
 
-# Exemple d'utilisation
+            
+def bubble_sort(arr):
+    i = 0
+    while not is_sorted_list(arr):
+        if i >= len(arr) -1:
+            i = 0
+        if arr[i] > arr[i + 1]:
+            arr[i], arr[i + 1] = arr[i + 1], arr[i]  
+        i += 1
+    return arr
+
 arr = [38, 27, 43, 3, 9, 82, 10]
-sorted_arr = merge_sort(arr)
-print(sorted_arr)
+array = [1,2,3,4,5]
+
+print(merge_sort(arr))
+print(bubble_sort(arr))
