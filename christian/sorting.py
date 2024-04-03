@@ -1,62 +1,25 @@
 from random import randint
 from time import time
 
-
-class OrderError(Exception):
-    """
-    Raised when the order is not 'asc' or 'desc'
-    
-    Parameters
-    ----------
-    order : str
-        The order must be 'asc' or 'desc'
-    """
-    def __init__(self, order, *args):
-        super().__init__(f"'{order}' is not a valid order - must be 'asc' or 'desc'")
+from utils import OrderError, is_sorted, time_sort
 
 
-def is_sorted(tab, order='asc'):
+def selection_sort(tab, order='asc'):
     """
+    Selection sort
+
     Parameters
     ----------
     tab : list
         The list to be sorted
     order : str, optional
         The order of the list. The default is 'asc'. Possible values are 'asc' and 'desc'
-    """
-    if order == 'asc':
-        sorted = all(tab[i] <= tab[i + 1] for i in range(len(tab) - 1))
-    else:
-        sorted = all(tab[i] >= tab[i + 1] for i in range(len(tab) - 1))
-    
-    return sorted
 
-
-def time_sort(tab, name, sort_function, order):
-    """
-    Views the execution time of the sort function
-
-    Parameters
-    ----------
+    Returns
+    -------
     tab : list
-        The list to be sorted
-    name : str
-        The name of the algorithm
-    sort_function : function
-        The function to sort the list
-    order : str
-        The order of the list. The default is 'asc'. Possible values are 'asc' and 'desc'
+        The sorted list
     """
-    start = time()
-    sorted_list = sort_function(tab, order)
-    end = time()
-    if is_sorted(sorted_list, order):
-        print(f"{name} - {order} - Sorted in {end - start} s")
-    else:
-        print(f"{name} - {order} - Unsorted")
-    
-
-def selection_sort(tab, order='asc'):
     i = 0
     while not is_sorted(tab, order):
         if order == 'asc':
@@ -71,6 +34,21 @@ def selection_sort(tab, order='asc'):
 
 
 def bubble_sort(tab, order='asc'):
+    """
+    Bubble sort
+
+    Parameters
+    ----------
+    tab : list
+        The list to be sorted
+    order : str, optional
+        The order of the list. The default is 'asc'. Possible values are 'asc' and 'desc'
+
+    Returns
+    -------
+    tab : list
+        The sorted list
+    """
     i = 0
     while not is_sorted(tab, order):
         if i >= len(tab) - 1:
@@ -89,6 +67,21 @@ def bubble_sort(tab, order='asc'):
 
 
 def insertion_sort(tab, order='asc'):
+    """
+    Insertion sort
+
+    Parameters
+    ----------
+    tab : list
+        The list to be sorted
+    order : str, optional
+        The order of the list. The default is 'asc'. Possible values are 'asc' and 'desc'
+
+    Returns
+    -------
+    tab : list
+        The sorted list
+    """
     while not is_sorted(tab, order):
         for i in range(1, len(tab)):
             x = tab[i]
@@ -109,6 +102,21 @@ def insertion_sort(tab, order='asc'):
 
 
 def merge_sort(tab, order='asc'):
+    """
+    Merge sort
+
+    Parameters
+    ----------
+    tab : list
+        The list to be sorted
+    order : str, optional
+        The order of the list. The default is 'asc'. Possible values are 'asc' and 'desc'
+
+    Returns
+    -------
+    tab : list
+        The sorted list
+    """
     def merge(left, right, order):
         left_index, right_index = 0, 0
         result = []
@@ -140,6 +148,21 @@ def merge_sort(tab, order='asc'):
 
 
 def quick_sort(tab, order='asc'):
+    """
+    Quick sort
+
+    Parameters
+    ----------
+    tab : list
+        The list to be sorted
+    order : str, optional
+        The order of the list. The default is 'asc'. Possible values are 'asc' and 'desc'
+        
+    Returns
+    -------
+    tab : list
+        The sorted list
+    """
     if len(tab) <= 1:
         return tab
     
@@ -157,7 +180,21 @@ def quick_sort(tab, order='asc'):
 
 
 def heap_sort(tab, order='asc'):
+    """
+    Heap sort
 
+    Parameters
+    ----------
+    tab : list
+        The list to be sorted
+    order : str, optional
+        The order of the list. The default is 'asc'. Possible values are 'asc' and 'desc'
+
+    Returns
+    -------
+    tab : list
+        The sorted list
+    """
     def heapify(tab, i, n, order):
         largest = i
         left = 2 * i + 1
@@ -186,6 +223,23 @@ def heap_sort(tab, order='asc'):
 
 
 def comb_sort(tab, order='asc', shrink_factor=1.3):
+    """
+    Comb sort
+
+    Parameters
+    ----------
+    tab : list
+        The list to be sorted
+    order : str, optional
+        The order of the list. The default is 'asc'. Possible values are 'asc' and 'desc'
+    shrink_factor : float, optional
+        The shrink factor. The default is 1.3
+
+    Returns
+    -------
+    tab : list
+        The sorted list
+    """
     gap = len(tab)
     sorted = False
 
@@ -212,6 +266,7 @@ def comb_sort(tab, order='asc', shrink_factor=1.3):
 
     return tab
 
+
 SORT_ALGORITHMS = {
     'selection_sort': selection_sort,
     'bubble_sort': bubble_sort,
@@ -226,13 +281,13 @@ SORT_ALGORITHMS = {
 if __name__ == '__main__':
     MIN = 0
     MAX = 1000
-    N = 1000
+    N = 10000
     tab = [randint(MIN, MAX) for _ in range(N)]
 
     time_sort(tab[:], "Selection sort", selection_sort, 'asc')
     time_sort(tab[:], "Selection sort", selection_sort, 'desc')
-    time_sort(tab[:], "Bubble sort", bubble_sort, 'asc')
-    time_sort(tab[:], "Bubble sort", bubble_sort, 'desc')
+    # time_sort(tab[:], "Bubble sort", bubble_sort, 'asc')
+    # time_sort(tab[:], "Bubble sort", bubble_sort, 'desc')
     time_sort(tab[:], "Insertion sort", insertion_sort, 'asc')
     time_sort(tab[:], "Insertion sort", insertion_sort, 'desc')
     time_sort(tab[:], "Merge sort", merge_sort, 'asc')
