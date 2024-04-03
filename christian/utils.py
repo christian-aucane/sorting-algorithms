@@ -1,5 +1,8 @@
+from pathlib import Path
 from time import time
 
+
+STATS_DIR = Path(__file__).parent / 'stats'
 
 class OrderError(Exception):
     """
@@ -33,7 +36,7 @@ def is_sorted(tab, order='asc'):
 
 
 
-def time_sort(tab, name, sort_function, order):
+def time_sort(tab, name, sort_function, order, verbose=True):
     """
     Views the execution time of the sort function
 
@@ -46,15 +49,19 @@ def time_sort(tab, name, sort_function, order):
     sort_function : function
         The function to sort the list
     order : str
-        The order of the list. The default is 'asc'. Possible values are 'asc' and 'desc'
+        The order of the list. Possible values are 'asc' and 'desc'
+    verbose : bool, optional
+        Whether to print the execution time or not. The default is True
     """
     start = time()
     sorted_tab = sort_function(tab, order)
     end = time()
-    runtime = end - start
+    runtime = (end - start)
     tab_is_sorted = is_sorted(sorted_tab, order)
-    if tab_is_sorted:
-        print(f"{name} - {order} - Sorted in {runtime} s")
-        return runtime, tab_is_sorted
-    else:
-        print(f"{name} - {order} - Unsorted")
+    if verbose:
+        if tab_is_sorted:
+            print(f"{name} - {order} - Sorted in {runtime} s")
+        else:
+            print(f"{name} - {order} - Unsorted")
+
+    return runtime, tab_is_sorted
