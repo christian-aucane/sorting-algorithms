@@ -79,9 +79,47 @@ def tri_bulles(liste):
 # Exécution
 tri_bulles(liste_aleatoire)
 
-
 # Tri par insertion
 # Stable
+def tri_insertion(liste):
+    # Début de l'enregistrement de mon temps
+    top_chrono = time.time() 
+    # Calculateur du nombre de permutation à 0
+    nb_permutations = 0
+
+    print(f"""Ma liste aléatoire et non triée est : 
+{liste}""")
+
+    # Boucle pour parcourir la liste de 1 à la longueur de la liste
+    # On considère que 0 est à la bonne place
+    for i in range(1, len(liste)):
+        nb_permuter = liste[i]
+        n = i - 1
+
+        # Pendant que (i -1) est supérieur à 0,
+        # et le nombre à permuter est inférieur 
+        # au nombre le précédent
+        while n >= 0 and nb_permuter < liste[n]:
+            # de la valeur à droite pour faire de la place
+            liste [n + 1] = liste [n]
+            # Calcul du nombre de permumu
+            nb_permutations +=1
+            # on enlève - 1 pour pouvoir comparer à l'élément précédent
+            n -= 1
+        # on permute l'élèment à la place 
+        liste [n + 1] = nb_permuter
+    
+    temps_fini = time.time()
+    mesure_temps = temps_fini - top_chrono
+    print()
+    print(f"""Ma liste triée avec le tri d'insertion est :
+{liste}""")
+    print()
+    print(f"""Temps d'exécution : {round(mesure_temps*1000, 6)} ms""")
+    print(f"""Nombre d'échanges : {nb_permutations}""")
+
+# Exécution
+tri_insertion(liste_aleatoire)
 
 # Tri fusion
 # Stable 
@@ -91,6 +129,62 @@ tri_bulles(liste_aleatoire)
 
 # Tri par tas
 # Pas stable
+# Création d'une classe pour encapsuler mes deux fonctions du tri par tas
+class tri_tas:
+    # Initialisation de l'objet tri_tas
+    def __init__(self):
+        self.nb_permutations = 0
+        # Attribut nb_permutations pour calculer le nb de permu
+
+    def trier(self, tas):
+        # Lancement du compteur
+        top_chrono = time.time() 
+
+        # Première fonction pour entasser ma liste en tas
+        # en créant des noeuds avec des fils : gauche et droite
+        def entasser(tas, i, n):
+            maximum = i
+            gauche = 2 * i + 1
+            droite = 2 * i + 2
+
+            if gauche < n and tas[gauche] > tas[maximum]:
+                maximum = gauche
+            if droite < n and tas[droite] > tas[maximum]:
+                maximum = droite
+            if maximum != i:
+                tas[i], tas[maximum] = tas[maximum], tas[i]
+                self.nb_permutations += 1
+                entasser(tas, maximum, n)
+
+        # Deuxième fonction trier qui contient la fonction construction
+        # du tas. 
+        n = len(tas)
+
+        # Boucle interne de la fonction qui itère sur les noeuds du tas
+        # Elle part du dernier noeud interne 'n // 2 - 1' et jusqu'à la racine.
+        for i in range(n // 2 - 1, -1, -1):
+            entasser(tas, i, n)
+
+        # Boucle qui itère à l'intérieur des indices
+        # de la fin à la racine 
+        # Elle permet de permuter les numéros 
+        for i in range(n - 1, 0, -1):
+            tas[0], tas[i] = tas[i], tas[0]
+            entasser(tas, 0, i)
+        
+        # Temps
+        temps_fini = time.time()
+        mesure_temps = temps_fini - top_chrono
+        print()
+        print(f"""Temps d'exécution : {round(mesure_temps*1000, 6)} ms""")
+        print(f"""Nombre d'échanges : {self.nb_permutations}""")
+
+# Exécution
+print(f"""Liste non triée: {liste_aleatoire}""")
+tri = tri_tas()
+tri.trier(liste_aleatoire)
+print()
+print(f"""Liste triée par tas: {liste_aleatoire}""")
 
 # Tri à peigne // comb sort 
 # Pas stable
