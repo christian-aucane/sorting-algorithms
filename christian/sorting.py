@@ -2,7 +2,7 @@ from random import randint
 from time import time
 
 from utils import OrderError, is_sorted, time_sort
-    
+
 
 def selection_sort(tab, order='asc'):
     """
