@@ -169,7 +169,7 @@ class tri_tas:
         # Boucle qui itère à l'intérieur des indices
         # de la fin à la racine 
         # Elle permet de permuter les numéros 
-        for i in range(n - 1, 0, -1):
+        for i in range(len_table - 1, 0, -1):
             tas[0], tas[i] = tas[i], tas[0]
             entasser(tas, 0, i)
         
