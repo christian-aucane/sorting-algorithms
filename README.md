@@ -16,6 +16,11 @@
 ### Classification des tris 
 
 1. Tri par d ́enombrement
+2. Tri Gnome 
+3. Tri par pigeon
+4. Tri par comptage
+5. Tri Cocktail
+
 
 
 #### 1. Stabilité du tri 
