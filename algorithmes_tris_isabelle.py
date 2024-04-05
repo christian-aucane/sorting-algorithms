@@ -124,6 +124,7 @@ tri_insertion(liste_aleatoire)
 # Tri fusion
 # Stable 
 
+
 # Tri rapide
 # Pas stable
 
@@ -142,28 +143,28 @@ class tri_tas:
 
         # Première fonction pour entasser ma liste en tas
         # en créant des noeuds avec des fils : gauche et droite
-        def entasser(tas, i, n):
+        def entasser(tas, i, len_table):
             maximum = i
             gauche = 2 * i + 1
             droite = 2 * i + 2
 
-            if gauche < n and tas[gauche] > tas[maximum]:
+            if gauche < len_table and tas[gauche] > tas[maximum]:
                 maximum = gauche
-            if droite < n and tas[droite] > tas[maximum]:
+            if droite < len_table and tas[droite] > tas[maximum]:
                 maximum = droite
             if maximum != i:
                 tas[i], tas[maximum] = tas[maximum], tas[i]
                 self.nb_permutations += 1
-                entasser(tas, maximum, n)
+                entasser(tas, maximum, len_table)
 
         # Deuxième fonction trier qui contient la fonction construction
         # du tas. 
-        n = len(tas)
+        len_table = len(tas)
 
         # Boucle interne de la fonction qui itère sur les noeuds du tas
         # Elle part du dernier noeud interne 'n // 2 - 1' et jusqu'à la racine.
-        for i in range(n // 2 - 1, -1, -1):
-            entasser(tas, i, n)
+        for i in range(len_table // 2 - 1, -1, -1):
+            entasser(tas, i, len_table)
 
         # Boucle qui itère à l'intérieur des indices
         # de la fin à la racine 
