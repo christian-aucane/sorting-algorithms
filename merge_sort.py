@@ -50,16 +50,13 @@ def quick_sort(arr):
     if len(arr) <= 1:
         return arr
     pivot = arr.pop()
-    print(pivot,"pivot")
     lower_than_pivot = []
     higher_than_pivot = []
     for number in arr:
         if number < pivot:
             lower_than_pivot.append(number)
-            print(lower_than_pivot,"petit")
         else:
             higher_than_pivot.append(number)
-            print(higher_than_pivot,"grand")
     return quick_sort(lower_than_pivot)+[pivot]+quick_sort(higher_than_pivot)
 
 
