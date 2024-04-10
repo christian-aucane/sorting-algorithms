@@ -2,7 +2,7 @@ from pathlib import Path
 from time import time
 
 
-STATS_DIR = Path(__file__).parent / 'stats'
+STATS_DIR = Path(__file__).resolve().parent / 'stats'
 
 class OrderError(Exception):
     """
