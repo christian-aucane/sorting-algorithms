@@ -20,16 +20,21 @@ def selection_sort(tab, order='asc'):
     tab : list
         The sorted list
     """
-    i = 0
-    while not is_sorted(tab, order):
+    n = len(tab)
+    for i in range(n):
         if order == 'asc':
-            tab[i] = min(tab[i:])
+            # Trouver l'indice du minimum dans la partie non triée de la liste
+            min_index = i + tab[i:].index(min(tab[i:]))
         elif order == 'desc':
-            tab[i] = max(tab[i:])
+            # Trouver l'indice du maximum dans la partie non triée de la liste
+            min_index = i + tab[i:].index(max(tab[i:]))
         else:
             raise OrderError(order)
-        i += 1
-
+        
+        # Échanger l'élément actuel avec l'élément minimum/maximum trouvé
+        tab[i], tab[min_index] = tab[min_index], tab[i]
+        print(tab)  # Optionnel : afficher les étapes intermédiaires du tri
+    
     return tab
 
 
@@ -196,24 +201,26 @@ def heap_sort(tab, order='asc'):
         The sorted list
     """
     def heapify(tab, i, n, order):
-        largest = i
-        left = 2 * i + 1
-        right = 2 * i + 2
+        i_largest = i
+        i_left = 2 * i + 1
+        i_right = 2 * i + 2
+
         if order == 'asc':
-            if left < n and tab[i] < tab[left]:
-                largest = left
-            if right < n and tab[largest] < tab[right]:
-                largest = right
+            if i_left < n and tab[i] < tab[i_left]:
+                i_largest = i_left
+            if i_right < n and tab[i_largest] < tab[i_right]:
+                i_largest = i_right
+
         elif order == 'desc':
-            if left < n and tab[i] > tab[left]:
-                largest = left
-            if right < n and tab[largest] > tab[right]:
-                largest = right
+            if i_left < n and tab[i] > tab[i_left]:
+                i_largest = i_left
+            if i_right < n and tab[i_largest] > tab[i_right]:
+                i_largest = i_right
 
-        if largest != i:
-            tab[i], tab[largest] = tab[largest], tab[i]
-            heapify(tab, largest, n, order)
-
+        if i_largest != i:
+            tab[i], tab[i_largest] = tab[i_largest], tab[i]
+            heapify(tab, i_largest, n, order)
+            
     for i in range(len(tab) // 2 - 1, -1, -1):
         heapify(tab, i, len(tab), order)
     for i in range(len(tab) - 1, 0, -1):
@@ -281,9 +288,10 @@ SORT_ALGORITHMS = {
 if __name__ == '__main__':
     MIN = 0
     MAX = 1000
-    N = 10000
-    tab = [randint(MIN, MAX) for _ in range(N)]
-
+    N = 10
+    # tab = [randint(MIN, MAX) for _ in range(N)]
+    tab = [3, 9, 4, 5, 10, 6, 7]
+    print("tab", tab)
     time_sort(tab[:], "Selection sort", selection_sort, 'asc')
     time_sort(tab[:], "Selection sort", selection_sort, 'desc')
     # time_sort(tab[:], "Bubble sort", bubble_sort, 'asc')
@@ -297,4 +305,4 @@ if __name__ == '__main__':
     time_sort(tab[:], "Heap sort", heap_sort, 'asc')
     time_sort(tab[:], "Heap sort", heap_sort, 'desc')
     time_sort(tab[:], "Comb sort", comb_sort, 'asc')
-    time_sort(tab[:], "Comb sort", comb_sort, 'desc')
+    time_sort(tab[:], "Comb s²ort", comb_sort, 'desc')
