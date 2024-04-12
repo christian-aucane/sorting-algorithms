@@ -123,10 +123,63 @@ tri_insertion(liste_aleatoire)
 
 # Tri fusion
 # Stable 
+def tri_fusion(liste):
+    n = len(liste)
+    
+    if n <= 1:
+        return liste
+    
+    moitie = len(liste) // 2
+    tg = tri_fusion(liste[:moitie])
+    td = tri_fusion(liste[moitie:])
+    
+    # Début de la fusion
+    n = len(tg) + len(td)
+    t = [0] * n
+    g = d = 0
+    
+    for i in range(n):
+        if g >= len(tg):
+            t[i] = td[d]
+            d += 1
+        elif d >= len(td):
+            t[i] = tg[g]
+            g += 1
+        else:
+            if tg[g] <= td[d]:
+                t[i] = tg[g]
+                g += 1
+            else:
+                t[i] = td[d]
+                d += 1
+
+    return t
+
+# Excecution
+print(liste_aleatoire)
+tri_fusion(liste_aleatoire)
 
 
 # Tri rapide
 # Pas stable
+
+def tri_rapide(liste):
+    if not liste:
+        return []
+    else: 
+        pivot=liste[len(liste)//2]
+        g = [x for x in liste if x <  pivot]
+        m = [x for x in liste if x == pivot]
+        d = [x for x in liste[:-1] if x > pivot]
+
+   
+        return tri_rapide(g) + m + tri_rapide(d)
+    
+top_chrono =time.time() 
+tri_rapide(liste_aleatoire)
+stop_chrono=time.time()
+temps = (stop_chrono-top_chrono)*1000
+print(f"""Temps d'éxécution: {round(temps,6)} ms""")
 
 # Tri par tas
 # Pas stable
