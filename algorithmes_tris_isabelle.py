@@ -1,291 +1,300 @@
 import time 
 import random
 
-# Tri par sélection
-# Pas stable
-def tri_selection(liste):
-    # Début de l'enregistrement de mon temps
-    top_chrono = time.time() 
-    # Calculateur du nombre de permutation à 0
-    nb_permutations = 0
-    
-    # Longueur de ma liste
-    longueur_liste = len(liste)
+long_liste = int(input("Veuillez choisir une longueur de liste :"))
 
-    # Boucle pour chaque élèments de ma liste + 1
-    for i in range(longueur_liste + 1):
-        # Création de la variable petit_nombre = i 
-        petit_nombre = i
-        # Boucle pour parcourir les élèments restants de ma liste
-        for j in range(i+1, longueur_liste) :
-            # Condition de comparaison :
-            # Si l'élèment actuel est plus petit que 
-            # l'élèment le plus petit trouvé, 
-            if liste[j] < liste[petit_nombre] :
-                # l'élèment actuel devient l'élèment le plus petit.
-                petit_nombre = j
-        # Si l'élèment le plus petit est différent de l'élèment actuel 
-        if petit_nombre != i :
-            # échange de position 
-            liste[i], liste[petit_nombre] = liste[petit_nombre], liste[i]
-            nb_permutations += 1
-    
-    temps_fini = time.time()
-    mesure_temps = temps_fini - top_chrono
-    print()
-    print(f"""Liste triée :
-{liste}""")
-    print()
-    print(f"""Temps d'exécution : {round(mesure_temps * 1000, 6)} ms""")
-    print(f"""Nombre d'échanges : {nb_permutations}""")
+# Ma liste aléatoire : 
+liste_aleatoire = [random.randint(1, 1000) for i in range(long_liste)]
 
-# Exécution
-tri_selection(liste_aleatoire)
+print("Ma liste à trier :")
+print(liste_aleatoire)
 
-# Tri à bulles (≠ tri à gnomes)
-# Stable
-def tri_bulles(liste):
-    top_chrono = time.time() 
-    nb_permutations = 0
-    
-    longueur_liste = len(liste)
+class Trier:
+    # Dictionnaire des noms et de leurs résumés
+    nom_tri = {
+        1: ("Tri par sélection", "sélectionne progressivement l'élément minimum et le place à la bonne position."),
+        2: ("Tri à bulles", "compare les éléments adjacents et les échange si nécessaire jusqu'à ce que tous les éléments soient ordonnés."),
+        3: ("Tri par insertion", "insère chaque élément à sa place correcte parmi les éléments déjà triés, étendant ainsi la partie triée de la liste."),
+        4: ("Tri fusion", "divise récursivement la liste en deux moitiés, trie chaque moitié séparément, puis les fusionne."),
+        5: ("Tri rapide", "partitionne la liste autour d'un pivot, échange les éléments autour du pivot pour les ordonner."),
+        6: ("Tri par tas", "organise les éléments dans un tas, puis réorganise le tas pour que l'élément racine soit le plus grand."),
+        7: ("Tri à peigne", "- une variante du tri à bulles qui échange les éléments à des intervalles plus grands."),
+    }
 
-    for passe in range(longueur_liste - 1, 0, -1):
-        echange = False
-        for i in range(passe):
-            if liste[i] > liste[i + 1]:
-                liste[i], liste[i + 1] = liste[i + 1], liste[i]
-                nb_permutations += 1
-                echange = True
-        if not echange:
-            break
+    def __init__(self, liste):
+        self.liste = liste
 
-    temps_fini = time.time()
-    mesure_temps = temps_fini - top_chrono
-    print()
-    print(f"""Liste triée :
-{liste}""")
-    print()
-    print(f"""Temps d'exécution : {round(mesure_temps*1000, 6)} ms""")
-    print(f"""Nombre d'échanges : {nb_permutations}""")
+    def top_chrono(self):
+        self.temps_debut = time.time()
 
-# Exécution
-tri_bulles(liste_aleatoire)
-
-# Tri par insertion
-# Stable
-def tri_insertion(liste):
-    # Début de l'enregistrement de mon temps
-    top_chrono = time.time() 
-    # Calculateur du nombre de permutation à 0
-    nb_permutations = 0
-
-    # Boucle pour parcourir la liste de 1 à la longueur de la liste
-    # On considère que 0 est à la bonne place
-    for i in range(1, len(liste)):
-        nb_permuter = liste[i]
-        n = i - 1
-
-        # Pendant que (i -1) est supérieur à 0,
-        # et le nombre à permuter est inférieur 
-        # au nombre le précédent
-        while n >= 0 and nb_permuter < liste[n]:
-            # de la valeur à droite pour faire de la place
-            liste [n + 1] = liste [n]
-            # Calcul du nombre de permumu
-            nb_permutations +=1
-            # on enlève - 1 pour pouvoir comparer à l'élément précédent
-            n -= 1
-        # on permute l'élèment à la place 
-        liste [n + 1] = nb_permuter
-    
-    temps_fini = time.time()
-    mesure_temps = temps_fini - top_chrono
-    print()
-    print(f"""Liste triée :
-{liste}""")
-    print()
-    print(f"""Temps d'exécution : {round(mesure_temps*1000, 6)} ms""")
-    print(f"""Nombre d'échanges : {nb_permutations}""")
-
-# Tri fusion
-# Stable 
-def tri_fusion(liste):
-    n = len(liste)
-    
-    if n <= 1:
-        return liste
-    
-    moitie = len(liste) // 2
-    tg = tri_fusion(liste[:moitie])
-    td = tri_fusion(liste[moitie:])
-    
-    # Début de la fusion
-    n = len(tg) + len(td)
-    t = [0] * n
-    g = d = 0
-    
-    for i in range(n):
-        if g >= len(tg):
-            t[i] = td[d]
-            d += 1
-        elif d >= len(td):
-            t[i] = tg[g]
-            g += 1
+    def temps_execution(self):
+        if hasattr(self, 'temps_debut'):
+            return time.time() - self.temps_debut
         else:
-            if tg[g] <= td[d]:
-                t[i] = tg[g]
+            return 0
+
+    # Fonction pour donner le choix à l'utilisateur
+    def main(self):
+        # Demander à l'utilisateur de choisir un algorithme de tri
+        print()
+        print("Choisissez un algorithme de tri:")
+        choix = int(input("1: Sélection, 2: Bulles, 3: Insertion, 4: Fusion, 5: Rapide, 6: Tas, 7: Peigne"))
+
+        # Vérifier si le choix de l'utilisateur est valide
+        if choix in nom_tri:
+            # Accéder au nom et au résumé de l'algorithme choisi
+            nom = nom_tri[choix][0]
+            resume = nom_tri[choix][1]
+            
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print(f"""Choix : {choix}""")
+            print(nom)
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print(f""""Le savais-tu? Le {nom} {resume}""")
+            print()
+        else:
+            print("Choix invalide. Veuillez choisir un nombre entre 1 et 7.")
+
+        if choix == 1:
+            tri_selection = TriSelection(self.liste)
+            return tri_selection.trier()
+        elif choix == 2:
+            tri_bulles = TriBulles(self.liste)
+            return tri_bulles.trier()
+        elif choix == 3:
+            tri_insertion = TriInsertion(self.liste)
+            return tri_insertion.trier()
+        elif choix == 4:
+            tri_fusion = TriFusion(self.liste)
+            return tri_fusion.trier()
+        elif choix == 5:
+            tri_rapide = TriRapide(self.liste)
+            return tri_rapide.trier()
+        elif choix == 6:
+            tri_tas = TriTas(self.liste)
+            return tri_tas.trier()
+        elif choix == 7:
+            tri_peigne = TriPeigne(self.liste)
+            return tri_peigne.trier()
+        else:
+            print("Choix invalide")
+
+# 1 
+class TriSelection(Trier):
+    def trier(self):
+        # Démarrage du compteur 
+        self.top_chrono()
+
+        # Longueur de ma liste
+        n = len(self.liste)
+
+        # Boucle pour chaque élèments de ma liste + 1
+        for i in range(n):
+            # Création de la variable petit_nombre = i 
+            petit_nombre = i
+            # Boucle pour parcourir les élèments restants de ma liste
+            for j in range(i+1, n) :
+                # Condition de comparaison :
+                # Si l'élèment actuel est plus petit que 
+                # l'élèment le plus petit trouvé, 
+                if self.liste[j] < self.liste[petit_nombre] :
+                    # l'élèment actuel devient l'élèment le plus petit.
+                    petit_nombre = j
+            # Si l'élèment le plus petit est différent de l'élèment actuel 
+            if petit_nombre != i :
+                # échange de position 
+                self.liste[i], self.liste[petit_nombre] = self.liste[petit_nombre], self.liste[i]
+
+        print(f"""Temps d'exécution : {round(self.temps_execution(),6)*1000} ms""")
+        print("La liste est triée")
+        return self.liste
+
+# 2 
+class TriBulles(Trier):
+    def trier(self):
+        # Démarrage du compteur 
+        self.top_chrono()
+
+        # Longueur de ma liste
+        n = len(self.liste)
+
+        for passe in range(n - 1, 0, -1):
+            echange = False
+            for i in range(passe):
+                if self.liste[i] > self.liste[i + 1]:
+                    self.liste[i], self.liste[i + 1] = self.liste[i + 1], self.liste[i]
+                    echange = True
+            if not echange:
+                break
+
+        print(f"""Temps d'exécution : {round(self.temps_execution(),6)*1000} ms""")
+        print("La liste est triée")
+        return self.liste
+
+# 3 
+class TriInsertion(Trier):
+    def trier(self):
+
+        # Démarrage du compteur 
+        self.top_chrono()
+
+        # Boucle pour parcourir la liste de 1 à la longueur de la liste
+        # On considère que 0 est à la bonne place
+        for i in range(1, len(self.liste)):
+            nb_permuter = self.liste[i]
+            n = i - 1
+
+            # Pendant que (i -1) est supérieur à 0,
+            # et le nombre à permuter est inférieur 
+            # au nombre le précédent
+            while n >= 0 and nb_permuter < self.liste[n]:
+                # de la valeur à droite pour faire de la place
+                self.liste [n + 1] = self.liste [n]
+                # on enlève - 1 pour pouvoir comparer à l'élément précédent
+                n -= 1
+            # on permute l'élèment à la place 
+            self.liste [n + 1] = nb_permuter
+
+        print(f"""Temps d'exécution : {round(self.temps_execution(),6)*1000} ms""")
+        print("La liste est triée")
+        return self.liste
+
+# 4 
+class TriFusion(Trier):
+    def trier(self):
+
+        # Démarrage du compteur 
+        self.top_chrono()
+
+        n = len(self.liste)
+
+        if n <= 1:
+            return self.liste
+
+        moitie = len(self.liste) // 2
+        tg = self.liste[:moitie]
+        td = self.liste[moitie:]
+
+        # Appel récursif pour trier les sous-listes
+        tri_fusion_gauche = TriFusion(tg)
+        tg_trie = tri_fusion_gauche.trier()
+
+        tri_fusion_droite = TriFusion(td)
+        td_trie = tri_fusion_droite.trier()
+
+        # Début de la fusion
+        n = len(tg) + len(td)
+        t = []
+        g = d = 0
+
+        while g < len(tg_trie) and d < len(td_trie):
+            if tg_trie[g] <= td_trie[d]:
+                t.append(tg_trie[g])
                 g += 1
             else:
-                t[i] = td[d]
+                t.append(td_trie[d])
                 d += 1
 
-    return t
+        # Ajouter les éléments restants de tg_trie et td_trie
+        t.extend(tg_trie[g:])
+        t.extend(td_trie[d:])
 
+        return t
 
-# Tri rapide
-# Pas stable
-def tri_rapide(liste):
-    if not liste:
-        return []
-    else: 
-        pivot=liste[len(liste)//2]
-        g = [x for x in liste if x <  pivot]
-        m = [x for x in liste if x == pivot]
-        d = [x for x in liste[:-1] if x > pivot]
+# 5
+class TriRapide(Trier):
+    def trier(self):
 
-   
-        return tri_rapide(g) + m + tri_rapide(d)
-    
-top_chrono =time.time() 
-tri_rapide(liste_aleatoire)
-stop_chrono=time.time()
-temps = (stop_chrono-top_chrono)*1000
-print(f"""Temps d'éxécution: {round(temps,6)} ms""")
+        # Démarrage du compteur 
+        self.top_chrono()
 
-# Tri par tas
-# Pas stable
-# Création d'une classe pour encapsuler mes deux fonctions du tri par tas
-class tri_tas:
+        if not self.liste:
+            return []
+        else: 
+            pivot=self.liste[len(self.liste)//2]
+            g = [x for x in self.liste if x <  pivot]
+            m = [x for x in self.liste if x == pivot]
+            d = [x for x in self.liste[:-1] if x > pivot]
+
+        return TriRapide(g).trier() + m + TriRapide(d).trier()
+
+# 6
+class TriTas(Trier):
     # Initialisation de l'objet tri_tas
-    def __init__(self):
-        self.nb_permutations = 0
-        # Attribut nb_permutations pour calculer le nb de permu
 
-    def trier(self, tas):
-        # Lancement du compteur
-        top_chrono = time.time() 
+    def trier(self):
+        # Démarrage du compteur 
+        self.top_chrono()
 
         # Première fonction pour entasser ma liste en tas
         # en créant des noeuds avec des fils : gauche et droite
-        def entasser(tas, i, len_table):
+        def entasser(i, n):
             maximum = i
             gauche = 2 * i + 1
             droite = 2 * i + 2
 
-            if gauche < len_table and tas[gauche] > tas[maximum]:
+            if gauche < n and self.liste[gauche] > self.liste[maximum]:
                 maximum = gauche
-            if droite < len_table and tas[droite] > tas[maximum]:
+            if droite < n and self.liste[droite] > self.liste[maximum]:
                 maximum = droite
             if maximum != i:
-                tas[i], tas[maximum] = tas[maximum], tas[i]
-                self.nb_permutations += 1
-                entasser(tas, maximum, len_table)
+                self.liste[i], self.liste[maximum] = self.liste[maximum], self.liste[i]
+                #self.nb_permutations += 1
+                entasser(maximum, n)
 
         # Deuxième fonction trier qui contient la fonction construction
         # du tas. 
-        len_table = len(tas)
+        n = len(self.liste)
 
         # Boucle interne de la fonction qui itère sur les noeuds du tas
         # Elle part du dernier noeud interne 'n // 2 - 1' et jusqu'à la racine.
-        for i in range(len_table // 2 - 1, -1, -1):
-            entasser(tas, i, len_table)
+        for i in range(n // 2 - 1, -1, -1):
+            entasser(i, n)
 
         # Boucle qui itère à l'intérieur des indices
         # de la fin à la racine 
         # Elle permet de permuter les numéros 
-        for i in range(len_table - 1, 0, -1):
-            tas[0], tas[i] = tas[i], tas[0]
-            entasser(tas, 0, i)
+        for i in range(n - 1, 0, -1):
+            self.liste[0], self.liste[i] = self.liste[i], self.liste[0]
+            entasser(0, i)
+
+        print(f"""Temps d'exécution : {round(self.temps_execution(),6)*1000} ms""")
+        print("La liste est triée")
+        return self.liste
+
+# 7 
+class TriPeigne(Trier):
+
+    def trier(self):
+
+        # Démarrage du compteur 
+        self.top_chrono()
+
+        # Calculateur du nombre de permutation à 0
+        #nb_permutations = 0
+
+        n = len(self.liste)
+        echange = True
         
-        # Temps
-        temps_fini = time.time()
-        mesure_temps = temps_fini - top_chrono
-        print()
-        print(f"""Temps d'exécution : {round(mesure_temps*1000, 6)} ms""")
-        print(f"""Nombre d'échanges : {self.nb_permutations}""")
+        while echange or n>1:
+        # échange n'est pas vrai
+            echange = False
+        # réduction progressive de l'écart
+        # l'écart ne devrait pas être <1
+            n = max(n * 10//13, 1)
+            # facteur de réduction = 10//13 soit 1,3
+            if n<1: n=1
+            for i in range(0, len(self.liste) - n):
+                    if self.liste[i]> self.liste[i + n]:
+                        echange = True
+                        # échange de position parce que echange = True
+                        self.liste[i], self.liste[i + n] = self.liste[i + n], self.liste[i]
 
-# Exécution
-print(f"""Liste aléatoire : {liste_aleatoire}""")
-tri = tri_tas()
-tri.trier(liste_aleatoire)
-print(f"""Liste triée : {liste_aleatoire}""")
-
-# Tri à peigne // comb sort 
-# Pas stable
-
-def tri_peigne(liste):
-    # Début de l'enregistrement de mon temps
-    top_chrono = time.time() 
-    # Calculateur du nombre de permutation à 0
-    nb_permutations = 0
-    
-    print(f"""Liste aléatoire : 
-{liste}""")
-    longueur_liste = len(liste)
-    echange = True
-    
-    while echange or longueur_liste>1:
-      # échange n'est pas vrai
-      echange = False
-      # réduction progressive de l'écart
-      # l'écart ne devrait pas être <1
-      longueur_liste = max(longueur_liste * 10//13, 1)
-      # facteur de réduction = 10//13 soit 1,3
-      if longueur_liste<1: longueur_liste=1
-      for i in range(0, len(liste) - longueur_liste):
-            if liste[i]> liste[i + longueur_liste]:
-                echange = True
-                # échange de position parce que echange = True
-                liste[i], liste[i + longueur_liste] = liste[i + longueur_liste], liste[i]
-                nb_permutations += 1
-    temps_fini = time.time()
-    mesure_temps = temps_fini - top_chrono
-    print()
-    print(f"""Liste triée :
-{liste}""")
-    print()
-    print(f"""Temps d'exécution : {round(mesure_temps*1000, 6)} ms""")
-    print(f"""Nombre d'échanges : {nb_permutations}""")
+        print(f"""Temps d'exécution : {round(self.temps_execution(),6)*1000} ms""")
+        print("La liste est triée")
+        return self.liste
 
 
 
-# Fonction principale pour choisir entre les tris
-def choisir_tri(liste, choix):
-    if choix == 1:
-        tri_selection(liste)
-    elif choix == 2:
-        tri_bulles(liste)
-    elif choix == 3:
-        tri_insertion(liste)
-    elif choix == 4:
-        tri_fusion(liste)
-    elif choix == 5:
-        tri_rapide(liste)
-    elif choix == 6:
-        tri_tas = TriTas()
-        tri_tas.trier(liste)
-    elif choix == 7:
-        tri_peigne = TriPeigne()
-        tri_peigne.trier(liste)
-    else:
-        print("Choix invalide")
-
-# Ma liste aléatoire : 
-liste_aleatoire = [random.randint(1, 1000) for i in range(15)]
-print(f"""Liste aléatoire : {liste_aleatoire}""")
-
-# Exécution avec choix du tri
-choix = int(input("Choisissez le tri (1: Sélection, 2: Bulles, 3: Insertion, 4: Fusion, 5: Rapide, 6: Tas, 7: Peigne): "))
-print(f"""Le choix est : {choix}""")
-choisir_tri(liste_aleatoire, choix)
+tri = Trier(liste_aleatoire)
+tri.main()
