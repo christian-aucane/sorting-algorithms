@@ -1,9 +1,6 @@
 import time 
 import random
 
-# Ma liste aléatoire : 
-liste_aleatoire = [random.randint(1, 1000) for i in range(15)]
-
 # Tri par sélection
 # Pas stable
 def tri_selection(liste):
@@ -12,8 +9,6 @@ def tri_selection(liste):
     # Calculateur du nombre de permutation à 0
     nb_permutations = 0
     
-    print(f"""Ma liste aléatoire et non triée est : 
-{liste}""")
     # Longueur de ma liste
     longueur_liste = len(liste)
 
@@ -38,7 +33,7 @@ def tri_selection(liste):
     temps_fini = time.time()
     mesure_temps = temps_fini - top_chrono
     print()
-    print(f"""Ma liste triée avec le tri de sélection est :
+    print(f"""Liste triée :
 {liste}""")
     print()
     print(f"""Temps d'exécution : {round(mesure_temps * 1000, 6)} ms""")
@@ -53,8 +48,6 @@ def tri_bulles(liste):
     top_chrono = time.time() 
     nb_permutations = 0
     
-    print(f"""Ma liste aléatoire et non triée est : 
-{liste}""")
     longueur_liste = len(liste)
 
     for passe in range(longueur_liste - 1, 0, -1):
@@ -70,7 +63,7 @@ def tri_bulles(liste):
     temps_fini = time.time()
     mesure_temps = temps_fini - top_chrono
     print()
-    print(f"""Ma liste triée avec le tri de sélection est :
+    print(f"""Liste triée :
 {liste}""")
     print()
     print(f"""Temps d'exécution : {round(mesure_temps*1000, 6)} ms""")
@@ -86,9 +79,6 @@ def tri_insertion(liste):
     top_chrono = time.time() 
     # Calculateur du nombre de permutation à 0
     nb_permutations = 0
-
-    print(f"""Ma liste aléatoire et non triée est : 
-{liste}""")
 
     # Boucle pour parcourir la liste de 1 à la longueur de la liste
     # On considère que 0 est à la bonne place
@@ -112,14 +102,11 @@ def tri_insertion(liste):
     temps_fini = time.time()
     mesure_temps = temps_fini - top_chrono
     print()
-    print(f"""Ma liste triée avec le tri d'insertion est :
+    print(f"""Liste triée :
 {liste}""")
     print()
     print(f"""Temps d'exécution : {round(mesure_temps*1000, 6)} ms""")
     print(f"""Nombre d'échanges : {nb_permutations}""")
-
-# Exécution
-tri_insertion(liste_aleatoire)
 
 # Tri fusion
 # Stable 
@@ -155,14 +142,9 @@ def tri_fusion(liste):
 
     return t
 
-# Excecution
-print(liste_aleatoire)
-tri_fusion(liste_aleatoire)
-
 
 # Tri rapide
 # Pas stable
-
 def tri_rapide(liste):
     if not liste:
         return []
@@ -234,11 +216,10 @@ class tri_tas:
         print(f"""Nombre d'échanges : {self.nb_permutations}""")
 
 # Exécution
-print(f"""Liste non triée: {liste_aleatoire}""")
+print(f"""Liste aléatoire : {liste_aleatoire}""")
 tri = tri_tas()
 tri.trier(liste_aleatoire)
-print()
-print(f"""Liste triée par tas: {liste_aleatoire}""")
+print(f"""Liste triée : {liste_aleatoire}""")
 
 # Tri à peigne // comb sort 
 # Pas stable
@@ -249,7 +230,7 @@ def tri_peigne(liste):
     # Calculateur du nombre de permutation à 0
     nb_permutations = 0
     
-    print(f"""Ma liste aléatoire et non triée est : 
+    print(f"""Liste aléatoire : 
 {liste}""")
     longueur_liste = len(liste)
     echange = True
@@ -271,11 +252,40 @@ def tri_peigne(liste):
     temps_fini = time.time()
     mesure_temps = temps_fini - top_chrono
     print()
-    print(f"""Ma liste triée avec le tri de peigne est :
+    print(f"""Liste triée :
 {liste}""")
     print()
     print(f"""Temps d'exécution : {round(mesure_temps*1000, 6)} ms""")
     print(f"""Nombre d'échanges : {nb_permutations}""")
 
-# Exécution 
-tri_peigne(liste_aleatoire)
+
+
+# Fonction principale pour choisir entre les tris
+def choisir_tri(liste, choix):
+    if choix == 1:
+        tri_selection(liste)
+    elif choix == 2:
+        tri_bulles(liste)
+    elif choix == 3:
+        tri_insertion(liste)
+    elif choix == 4:
+        tri_fusion(liste)
+    elif choix == 5:
+        tri_rapide(liste)
+    elif choix == 6:
+        tri_tas = TriTas()
+        tri_tas.trier(liste)
+    elif choix == 7:
+        tri_peigne = TriPeigne()
+        tri_peigne.trier(liste)
+    else:
+        print("Choix invalide")
+
+# Ma liste aléatoire : 
+liste_aleatoire = [random.randint(1, 1000) for i in range(15)]
+print(f"""Liste aléatoire : {liste_aleatoire}""")
+
+# Exécution avec choix du tri
+choix = int(input("Choisissez le tri (1: Sélection, 2: Bulles, 3: Insertion, 4: Fusion, 5: Rapide, 6: Tas, 7: Peigne): "))
+print(f"""Le choix est : {choix}""")
+choisir_tri(liste_aleatoire, choix)
