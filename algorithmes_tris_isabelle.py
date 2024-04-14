@@ -10,19 +10,21 @@ print("Ma liste à trier :")
 print(liste_aleatoire)
 
 class Trier:
-    # Dictionnaire des noms et de leurs résumés
-    nom_tri = {
-        1: ("Tri par sélection", "sélectionne progressivement l'élément minimum et le place à la bonne position."),
-        2: ("Tri à bulles", "compare les éléments adjacents et les échange si nécessaire jusqu'à ce que tous les éléments soient ordonnés."),
-        3: ("Tri par insertion", "insère chaque élément à sa place correcte parmi les éléments déjà triés, étendant ainsi la partie triée de la liste."),
-        4: ("Tri fusion", "divise récursivement la liste en deux moitiés, trie chaque moitié séparément, puis les fusionne."),
-        5: ("Tri rapide", "partitionne la liste autour d'un pivot, échange les éléments autour du pivot pour les ordonner."),
-        6: ("Tri par tas", "organise les éléments dans un tas, puis réorganise le tas pour que l'élément racine soit le plus grand."),
-        7: ("Tri à peigne", "- une variante du tri à bulles qui échange les éléments à des intervalles plus grands."),
-    }
+
 
     def __init__(self, liste):
         self.liste = liste
+        
+        # Dictionnaire des noms et de leurs résumés
+        self.nom_tri = {
+            1: ("Tri par sélection", "sélectionne progressivement l'élément minimum et le place à la bonne position."),
+            2: ("Tri à bulles", "compare les éléments adjacents et les échange si nécessaire jusqu'à ce que tous les éléments soient ordonnés."),
+            3: ("Tri par insertion", "insère chaque élément à sa place correcte parmi les éléments déjà triés, étendant ainsi la partie triée de la liste."),
+            4: ("Tri fusion", "divise récursivement la liste en deux moitiés, trie chaque moitié séparément, puis les fusionne."),
+            5: ("Tri rapide", "partitionne la liste autour d'un pivot, échange les éléments autour du pivot pour les ordonner."),
+            6: ("Tri par tas", "organise les éléments dans un tas, puis réorganise le tas pour que l'élément racine soit le plus grand."),
+            7: ("Tri à peigne", "- une variante du tri à bulles qui échange les éléments à des intervalles plus grands."),
+        }
 
     def top_chrono(self):
         self.temps_debut = time.time()
@@ -41,10 +43,10 @@ class Trier:
         choix = int(input("1: Sélection, 2: Bulles, 3: Insertion, 4: Fusion, 5: Rapide, 6: Tas, 7: Peigne"))
 
         # Vérifier si le choix de l'utilisateur est valide
-        if choix in nom_tri:
+        if choix in self.nom_tri:
             # Accéder au nom et au résumé de l'algorithme choisi
-            nom = nom_tri[choix][0]
-            resume = nom_tri[choix][1]
+            nom = self.nom_tri[choix][0]
+            resume = self.nom_tri[choix][1]
             
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~")
             print(f"""Choix : {choix}""")
