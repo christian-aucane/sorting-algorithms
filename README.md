@@ -86,9 +86,6 @@ Il nécessite généralement plus d'espace de mémoire car il doit stocker les �
 | Tri par tas |  |
 | Tri à peigne |  |
 
-#### 4. Complexité du temps
-  
-    
      
   
   
@@ -97,8 +94,6 @@ Il nécessite généralement plus d'espace de mémoire car il doit stocker les �
   
   
     
-
-#### 5. Complexité de la mémoire
   
   
   
