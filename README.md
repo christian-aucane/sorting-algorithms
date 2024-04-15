@@ -87,19 +87,109 @@ Il nécessite généralement plus d'espace de mémoire car il doit stocker les �
 | Tri à peigne |  |
 
      
+#### 4. Complexité du temps
+
+Plus la taille de la liste sera grande, plus 
   
+Le tri le plus lent est : Bubble Sort, avec un temps d'exécution supérieur à la moyenne - pour n, taille de l'échantillon = 10, 50, 100 et 1000. 
+
+Le tri de sélection est le deuxième le plus lent du groupe. 
   
+*Pour n = 10, où n = taille de la liste:* 
+Le tri Insertion  est le plus performant : 0,000 007 secondes en temps d'exécution. 
+Le tri Rapide et le tri à peigne, se placent simultanément en seconde position : 0, 000 009 secondes en temps d'exécution. 
+
+Le tri par tas mets 0,000 012 secondes et se place en 4e position. 
+
+Puis le tri fusion arrive en 5e position avec  0,000 023 secondes en temps d'exécution.  
+
+*Pour n = 50, où n = taille de la liste:* 
+Le classement des tris les plus rapides et des plus lents restent plus ou moins pareils sauf pour le tri à peigne qui se place en première position avec  0,000 048 secondes d'exécutions. Le quick sort le suit. 
+
+*Pour n = 100, où n = taille de la liste:* 
+Le tri à peigne reste le plus rapide. 
+Le tri rapide en seconde position. 
+Ensuite, le tri par tas prend la 3e position avec  0,000 174 secondes. 
+Le tri insertion prends la 4e position et le tri fusion la 5e position. 
+
+Le bubble sort reste le plus lent avec  0,008 104 secondes. Le tri par sélection reste le 2e le plus lent avec  0,001 635 secondes. 
+
+*Pour n = 1 000, où n = taille de la liste:* 
+Le tri le plus rapide et le plus performant est le tri rapide :  0,000 830 secondes.
+En 2nde position : le tri fusion. 
+Le tri à peigne se place en 3e position. 
+Le tri par tas en 4e place. 
+
+Le tri par insertion est en 5e position. 
+
+Le tri par sélection rest en 6e position avec  0,117 secondes.  
+Le bubble sort est toujours le plus lent avec  2,6 secondes. 
+
+*Pour n = 10 000, où n = taille de la liste:* 
+Classement : 
+Tri rapide
+Tri à peigne
+Tri fusion
+Tri par tas
+Tri sélection
+Tri insertion
+Tri à bulles
+
+*Analyse en ascendant*
+Taille de la liste = 10 
+| Nom Tris | Temps exécution | 
+| --------- | --------- | 
+| Tri sélection |  0,0000329  |
+| Tri à bulles |  0,0000405   |
+| Tri fusion |  0,0000238  |
+| Tri par insertion |  0,0000069  |
+| Tri rapide |  0,00000858  |
+| Tri par tas |  0,0000122  |
+| Tri à peigne |  0,00000858  |
   
+Taille de la liste = 50
+| Nom Tris | Temps exécution | 
+| --------- | --------- | 
+| Tri sélection |   0,0006251  |
+| Tri à bulles |   0,0014071   |
+| Tri fusion |   0,0001402  |
+| Tri par insertion |   0,0000682  |
+| Tri rapide |   0,0000625  |
+| Tri par tas |   0,0000975  |
+| Tri à peigne |   0,0000486  |
+
+Taille de la liste = 100
+| Nom Tris | Temps exécution | 
+| --------- | --------- | 
+| Tri sélection |   0,0016356  |
+| Tri à bulles |   0,0081043   |
+| Tri fusion |   0,0002508  |
+| Tri par insertion |   0,0002246  |
+| Tri rapide |   0,0001144  |
+| Tri par tas |   0,0001740  |
+| Tri à peigne |   0,0001032  |
   
-  
-  
-    
-  
-  
-  
-  
-  
-  
+Taille de la liste = 1 000
+| Nom Tris | Temps exécution | 
+| --------- | --------- | 
+| Tri sélection |  0,1177248  |
+| Tri à bulles |  2,5972666   |
+| Tri fusion |  0,0018897  |
+| Tri par insertion |  0,0210373  |
+| Tri rapide |  0,0008304  |
+| Tri par tas |  0,0024409  |
+| Tri à peigne |  0,0021963  |
+
+Taille de la liste = 10 000
+| Nom Tris | Temps exécution | 
+| --------- | --------- | 
+| Tri sélection |   0,7836649  |
+| Tri à bulles |  526,3726317   |
+| Tri fusion |  0,0300781  |
+| Tri par insertion |  2,1984450  |
+| Tri rapide |  0,0073828  |
+| Tri par tas |  0,0332305  |
+| Tri à peigne |  0,0258309  |
   
   
   
