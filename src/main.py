@@ -1,5 +1,5 @@
 """
-main.py
+src/main.py
 
 This module contains the main function for the sorting algorithms application.
 """

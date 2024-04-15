@@ -1,5 +1,5 @@
 """
-displayers.py
+src/app/displayers.py
 
 This module contains the displayers used in the sorting algorithms pygame app.
 
