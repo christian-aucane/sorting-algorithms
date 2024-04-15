@@ -1,5 +1,5 @@
 """
-constants.py
+src/app/constants.py
 
 This module contains the constants used in the sorting algorithms pygame app.
 
