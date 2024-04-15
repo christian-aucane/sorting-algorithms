@@ -191,14 +191,14 @@ class SelectionSortDisplayer(BaseSortDisplayer):
 
     Methods:
         Inherited from `BaseSortDisplayer`:
-            get_color(self, num)
-            draw_title(self, title)
-            draw_text(self, text, x, y, color=BLACK, font_size=30)
-            clean_screen(self)
-            handle_events(self)
-            update_screen(self)
+            get_color(self, num) : get the color of the number
+            draw_title(self, title) : draw the title on the screen
+            draw_text(self, text, x, y, color=BLACK, font_size=30) : draw the text on the screen
+            clean_screen(self) : clean the screen
+            handle_events(self) : handle events
+            update_screen(self) : update the screen
         Override:
-            sort(self)
+            sort(self) : sort the list
 
     Properties:
         Inherited from `BaseSortDisplayer`:
@@ -257,14 +257,14 @@ class BubbleSortDisplayer(BaseSortDisplayer):
     
     Methods:
         Inherited from `BaseSortDisplayer`:
-            get_color(self, num)
-            draw_title(self, title)
-            draw_text(self, text, x, y, color=BLACK, font_size=30)
-            clean_screen(self)
-            handle_events(self)
-            update_screen(self)
+            get_color(self, num) : get the color of the number
+            draw_title(self, title) : draw the title on the screen
+            draw_text(self, text, x, y, color=BLACK, font_size=30) : draw the text on the screen
+            clean_screen(self) : clean the screen
+            handle_events(self) : handle events
+            update_screen(self) : update the screen
         Override:
-            sort(self)
+            sort(self) : sort the list
 
     Properties:
         Inherited from `BaseSortDisplayer`:
@@ -325,14 +325,14 @@ class InsertionSortDisplayer(BaseSortDisplayer):
             
     Methods:
         Inherited from `BaseSortDisplayer`:
-            get_color(self, num)
-            draw_title(self, title)
-            draw_text(self, text, x, y, color=BLACK, font_size=30)
-            clean_screen(self)
-            handle_events(self)
-            update_screen(self)
+            get_color(self, num) : get the color of the number
+            draw_title(self, title) : draw the title on the screen
+            draw_text(self, text, x, y, color=BLACK, font_size=30) : draw the text on the screen
+            clean_screen(self) : clean the screen
+            handle_events(self) : handle events
+            update_screen(self) : update the screen
         Override:
-            sort(self)
+            sort(self) : sort the list
 
     Properties:
         Inherited from `BaseSortDisplayer`:
@@ -398,17 +398,17 @@ class MergeSortDisplayer(BaseSortDisplayer):
             
     Methods:
         Inherited from `BaseSortDisplayer`:
-            get_color(self, num)
-            draw_title(self, title)
-            draw_text(self, text, x, y, color=BLACK, font_size=30)
-            clean_screen(self)
-            handle_events(self)
-            update_screen(self)
+            get_color(self, num) : get the color of the number
+            draw_title(self, title) : draw the title on the screen
+            draw_text(self, text, x, y, color=BLACK, font_size=30) : draw the text on the screen
+            clean_screen(self) : clean the screen
+            handle_events(self) : handle events
+            update_screen(self) : update the screen
         Override:
-            sort(self)
+            sort(self) : sort the list
         Local:
-            sort_recursive(self, tab)
-            merge(self, left, right)
+            sort_recursive(self, tab) : sort the list recursively
+            merge(self, left, right) : merge two sorted lists
 
     Properties:
         Override:
@@ -508,17 +508,17 @@ class QuickSortDisplayer(BaseSortDisplayer):
     
     Methods:
         Inherited from `BaseSortDisplayer`:
-            get_color(self, num)
-            draw_title(self, title)
-            draw_text(self, text, x, y, color=BLACK, font_size=30)
-            clean_screen(self)
-            handle_events(self)
-            update_screen(self)
+            get_color(self, num) : get the color of the number
+            draw_title(self, title) : draw the title on the screen
+            draw_text(self, text, x, y, color=BLACK, font_size=30) : draw the text on the screen
+            clean_screen(self) : clean the screen
+            handle_events(self) : handle events
+            update_screen(self) : update the screen
         Override:
-            sort(self)
+            sort(self) : sort the list
         Local:
-            partition(self, tab, low, high)
-            sort_recursive(self, tab, low, high)
+            partition(self, tab, low, high) : partition the list
+            sort_recursive(self, tab, low, high) : sort the list recursively
 
     Properties:
         Inherited from `BaseSortDisplayer`:
@@ -594,16 +594,16 @@ class HeapSortDisplayer(BaseSortDisplayer):
 
     Methods:
         Inherited from `BaseSortDisplayer`:
-            get_color(self, num)
-            draw_title(self, title)
-            draw_text(self, text, x, y, color=BLACK, font_size=30)
-            clean_screen(self)
-            handle_events(self)
-            update_screen(self)
+            get_color(self, num) : get the color of the number
+            draw_title(self, title) : draw the title on the screen
+            draw_text(self, text, x, y, color=BLACK, font_size=30) : draw the text on the screen
+            clean_screen(self) : clean the screen
+            handle_events(self) : handle events
+            update_screen(self) : update the screen
         Override:
-            sort(self)
+            sort(self) : sort the list
         Local:
-            heapify(self, tab, i, n)
+            heapify(self, tab, i, n) : heapify the list
             
     Properties:
         Inherited from `BaseSortDisplayer`:
@@ -685,14 +685,14 @@ class CombSortDisplayer(BaseSortDisplayer):
             
     Methods:
         Inherited from `BaseSortDisplayer`:
-            get_color(self, num)
-            draw_title(self, title)
-            draw_text(self, text, x, y, color=BLACK, font_size=30)
-            clean_screen(self)
-            handle_events(self)
-            update_screen(self)
+            get_color(self, num) : get the color of the number
+            draw_title(self, title) : draw the title on the screen
+            draw_text(self, text, x, y, color=BLACK, font_size=30) : draw the text on the screen
+            clean_screen(self)  : clean the screen
+            handle_events(self) : handle events
+            update_screen(self) : update the screen
         Override:
-            sort(self)
+            sort(self) : sort the list
         Local:
             shrink_factor (float): the shrink factor of the gap
 
