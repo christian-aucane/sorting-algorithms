@@ -1,8 +1,23 @@
+"""
+utils.py
+
+Utils for sorting algorithms
+
+This module contains the utils for sorting algorithms
+
+It includes the following functions:
+
+- `is_sorted`
+- `time_sort`
+- `OrderError`
+"""
+
 from pathlib import Path
 from time import time
 
 
 STATS_DIR = Path(__file__).resolve().parent / 'stats'
+
 
 class OrderError(Exception):
     """

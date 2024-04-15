@@ -1,3 +1,17 @@
+"""
+stats.py
+
+Statistics for sorting algorithms
+
+This module contains the statistics for sorting algorithms
+
+It includes the following functions:
+
+- `generate_stats_dict`
+- `write_stats_to_file`
+- `main`
+"""
+
 import json
 from pprint import pprint
 from random import randint
@@ -7,6 +21,12 @@ from utils import STATS_DIR, time_sort
 
 
 def generate_stats_dict(tab):
+    """
+    Parameters
+    ----------
+    tab : list
+        The list to be sorted
+    """
     stats = {}
     for name, function in SORT_ALGORITHMS.items():
             # if len(tab) <= 1000 or name != "bubble_sort":  # TODO : faire tourner en supprimant cette ligne
@@ -24,11 +44,22 @@ def generate_stats_dict(tab):
 
 
 def write_stats_to_file(stats, filename):
+    """
+    Parameters
+    ----------
+    stats : dict
+        The statistics to be written
+    filename : str
+        The name of the file
+    """
     with open(filename, 'w') as f:
         json.dump(stats, f, indent=4)
 
 
 def main():
+    """
+    Main function for the sorting algorithms statistics
+    """
     min = -1000
     max = 1000
     result = {}

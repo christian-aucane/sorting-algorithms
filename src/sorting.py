@@ -1,3 +1,21 @@
+"""
+sorting.py
+
+Sorting Algorithms
+
+This module contains the sorting algorithms to compare
+
+It includes the following functions:
+
+- `selection_sort`
+- `bubble_sort`
+- `insertion_sort`
+- `merge_sort`
+- `quick_sort`
+- `heap_sort`
+- `comb_sort`
+"""
+
 from random import randint
 from time import time
 
@@ -294,8 +312,8 @@ if __name__ == '__main__':
     print("tab", tab)
     time_sort(tab[:], "Selection sort", selection_sort, 'asc')
     time_sort(tab[:], "Selection sort", selection_sort, 'desc')
-    # time_sort(tab[:], "Bubble sort", bubble_sort, 'asc')
-    # time_sort(tab[:], "Bubble sort", bubble_sort, 'desc')
+    time_sort(tab[:], "Bubble sort", bubble_sort, 'asc')
+    time_sort(tab[:], "Bubble sort", bubble_sort, 'desc')
     time_sort(tab[:], "Insertion sort", insertion_sort, 'asc')
     time_sort(tab[:], "Insertion sort", insertion_sort, 'desc')
     time_sort(tab[:], "Merge sort", merge_sort, 'asc')

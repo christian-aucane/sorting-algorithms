@@ -1,4 +1,6 @@
 """
+main_app.py
+
 Sorting Algorithms App
 
 This module contains the main application for
@@ -38,7 +40,6 @@ class Button:
     Methods:
         draw(): Draw the button on the screen.
         is_clicked(pos): Check if the button is clicked given a mouse position.
-        set_color(color): Change the button color.
     """
     def __init__(self, screen, x, y, width, height, text, color, key=""):
         """
@@ -82,19 +83,25 @@ class Button:
         """
         return self.rect.collidepoint(pos)
 
-    def set_color(self, color):
-        """
-        Change the button color
-
-        Args:
-            color (tuple): the new color
-        """
-        self.color = color
-
 
 class SortingAlgorithmsApp:
     """
     Main application for display sorting algorithms
+
+    Attributes:
+        running (bool): True if the app is running, False otherwise
+        algorithm_selected (str): the selected algorithm
+        order_selected (str): the selected order
+        algorithm_displayer (BaseSortDisplayer): the displayer for the selected algorithm
+        list (list): the list of numbers to sort
+
+    Methods:
+        draw_title(title): Draw the title on the screen
+        quit(): Quit the app
+        run(): Run the app
+        select_algorithm(): Select the solving method
+        select_order(): Select the order of the list
+        start_algorithm(): Start the selected algorithm
     """
     def __init__(self):
         """
@@ -117,7 +124,6 @@ class SortingAlgorithmsApp:
             title (str): the title
         """
         font = pygame.font.SysFont("", 50)
-
         text = font.render(title, True, BLACK)
         text_rect = text.get_rect(center=(WIDTH // 2, 50))
         self.screen.blit(text, text_rect)
