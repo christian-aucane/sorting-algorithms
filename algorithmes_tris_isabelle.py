@@ -107,7 +107,7 @@ class TriSelection(Trier):
                 # échange de position 
                 self.liste[i], self.liste[petit_nombre] = self.liste[petit_nombre], self.liste[i]
 
-        print(f"""Temps d'exécution : {round(self.temps_execution(),6)*1000} ms""")
+        print(f"""Temps d'exécution : {round((self.temps_execution()*1000),6)} ms""")
         print("La liste est triée")
         return self.liste
 
@@ -129,7 +129,7 @@ class TriBulles(Trier):
             if not echange:
                 break
 
-        print(f"""Temps d'exécution : {round(self.temps_execution(),6)*1000} ms""")
+        print(f"""Temps d'exécution : {round((self.temps_execution()*1000),6)} ms""")
         print("La liste est triée")
         return self.liste
 
@@ -157,7 +157,7 @@ class TriInsertion(Trier):
             # on permute l'élèment à la place 
             self.liste [n + 1] = nb_permuter
 
-        print(f"""Temps d'exécution : {round(self.temps_execution(),6)*1000} ms""")
+        print(f"""Temps d'exécution : {round((self.temps_execution()*1000),6)} ms""")
         print("La liste est triée")
         return self.liste
 
@@ -260,7 +260,7 @@ class TriTas(Trier):
             self.liste[0], self.liste[i] = self.liste[i], self.liste[0]
             entasser(0, i)
 
-        print(f"""Temps d'exécution : {round(self.temps_execution(),6)*1000} ms""")
+        print(f"""Temps d'exécution : {round((self.temps_execution()*1000),6)} ms""")
         print("La liste est triée")
         return self.liste
 
@@ -292,7 +292,7 @@ class TriPeigne(Trier):
                         # échange de position parce que echange = True
                         self.liste[i], self.liste[i + n] = self.liste[i + n], self.liste[i]
 
-        print(f"""Temps d'exécution : {round(self.temps_execution(),6)*1000} ms""")
+        print(f"""Temps d'exécution : {round((self.temps_execution()*1000),6)} ms""")
         print("La liste est triée")
         return self.liste
 
